@@ -57,7 +57,8 @@ namespace detail {
 //  mimic: syscall(2), linux
 template <typename... A>
 FOLLY_ERASE long linux_syscall(long number, A... a) {
-#if defined(_WIN32) || (defined(__EMSCRIPTEN__) && !defined(syscall))
+#if defined(_WIN32) || (defined(__EMSCRIPTEN__) && !defined(syscall)) || \
+  (defined(TARGET_OS_TV) && TARGET_OS_TV != 0)
   errno = ENOSYS;
   return -1;
 #else
