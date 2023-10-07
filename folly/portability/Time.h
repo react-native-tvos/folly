@@ -27,7 +27,7 @@
 // solve that by pretending we have it here in the header and
 // then enable our implementation on the source side so that
 // gets linked in instead.
-#if defined(__MACH__) && defined(__CLOCK_AVAILABILITY)
+#if defined(__MACH__) && defined(__CLOCK_AVAILABILITY) && !(defined(TARGET_OS_TV) && TARGET_OS_TV)
 
 #ifdef FOLLY_HAVE_CLOCK_GETTIME
 #undef FOLLY_HAVE_CLOCK_GETTIME
